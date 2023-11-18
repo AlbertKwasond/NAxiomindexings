@@ -1,0 +1,126 @@
+﻿<!-- Navbar Area Start -->
+<div class="navbar-area">
+	<!-- Menu For Mobile Device -->
+	<div class="mobile-nav">
+		<a asp-controller="Home" asp-action="Index" class="logo">
+			<img src="~/assets/img/logo.png" alt="logo" height="30">
+		</a>
+	</div>
+
+	<!-- Menu For Desktop Device -->
+	<div class="main-nav">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<a class="navbar-brand" asp-controller="Home" asp-action="Index">
+					<img src="~/assets/img/logo.png" alt="logo">
+				</a>
+				<div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+					<ul class="navbar-nav m-auto">
+						<li class="nav-item">
+							<a asp-controller="Home" asp-action="Index" class="nav-link active">Home</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link dropdown-toggle ">About</a>
+							<ul class="dropdown-menu">
+								<li class="nav-item">
+									<a asp-controller="Home" asp-action="About" class="nav-link">About Us</a>
+								</li>
+								<li class="nav-item">
+									<a asp-controller="Home" asp-action="Team" class="nav-link">Team</a>
+								</li>
+								<li class="nav-item">
+									<a asp-controller="Home" asp-action="BoardOfDirectors" class="nav-link">Board Of Directors</a>
+								</li>
+
+								<li class="nav-item">
+									<a asp-controller="Home" asp-action="Volunteers" class="nav-link">Volunteers</a>
+								</li>
+							</ul>
+						</li>
+
+						<li class="nav-item">
+							<a href="#" class="nav-link dropdown-toggle">Content Selection</a>
+
+							<ul class="dropdown-menu">
+								<li class="nav-item">
+									<a asp-controller="Home" asp-action="EvaluateProcess" class="nav-link">Evaluate Process</a>
+								</li>
+								<li class="nav-item">
+									<a asp-controller ="Home" asp-action="EditorialSelectionProcess" class="nav-link">Editorial Selection Process</a>
+								</li>
+								<li class="nav-item">
+									<a asp-controller="Home" asp-action="JournalInclusionProcess" class="nav-link">Journal Inclusion Process</a>
+								</li>
+								<li class="nav-item">
+									<a asp-controller="Home" asp-action="BookInclusionProcess" class="nav-link">Book Inclusion Process</a>
+								</li>
+								<li class="nav-item">
+									<a asp-controller="Home" asp-action="ConferencePrecedingInclusionProcess" class="nav-link">Conference Preceding Inclusion Process</a>
+								</li>
+								<li class="nav-item">
+									<a asp-controller="Home" asp-action="GeneralPolicies" class="nav-link">General Policies</a>
+								</li>
+								<li class="nav-item">
+									<a asp-controller="Home" asp-action="AppealsProcess" class="nav-link">Appeals Process</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link dropdown-toggle">Journal Master Lists</a>
+							<ul class="dropdown-menu">
+								<li class="nav-item">
+									<a asp-controller="Home" asp-action="JournalIndex" class="nav-link">Journal Index</a>
+								</li>
+								<li class="nav-item">
+									<a asp-controller="Home" asp-action="CitationReport" class="nav-link">Citation Report</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link dropdown-toggle">Apply</a>
+							<ul class="dropdown-menu">
+								<li class="nav-item">
+									<a href="#" class="nav-link">Application Form</a>
+								</li>
+								<li class="nav-item">
+									<a asp-controller="Home" asp-action="GuideToApplying" class="nav-link">Guide To Applying</a>
+								</li>
+								
+								<li class="nav-item">
+									<a asp-controller="Home" asp-action="WhyIndexYourJournalInAxiomindexing" class="nav-link">Why Index Your Journal In Axiom Indexing</a>
+								</li>
+								<li class="nav-item">
+									<a asp-controller="Home" asp-action="FAQ" class="nav-link">FAQ</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link dropdown-toggle">Docs</a>
+							<ul class="dropdown-menu">
+								
+								<li class="nav-item">
+									<a asp-controller="Home" asp-action="API" class="nav-link">API</a>
+								</li>
+								<li class="nav-item">
+									<a asp-controller="Home" asp-action="XML" class="nav-link">XML</a>
+								</li>
+								
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a asp-controller="Blog" asp-action="Index" class="nav-link">Blog</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link">Rankings</a>
+						</li>
+					</ul>
+
+					<div class="other-option">
+						<a href="sign-in.html" class="signin-btn">Sign In</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+</div>
+<!-- Navbar Area End -->

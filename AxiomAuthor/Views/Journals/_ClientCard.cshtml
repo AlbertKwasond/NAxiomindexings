@@ -1,0 +1,32 @@
+﻿@model AxiomAuthor.ViewModel.JournalsViewModel
+@foreach (var item in Model.ListJournals)
+{
+    <div class="col">
+        <div class="card h-100">
+            <img class="card-img-top" src="@Url.Content("https://localhost:7043/assets/img/journal/cover/"+item.CoverImageUrl)" alt="Card image cap" height="356" />
+            <div class="card-body">
+                <h5 class="card-title">
+                    @Html.DisplayFor(model => item.Title)
+                </h5>
+                <p class="card-text">
+                    @Html.DisplayFor(model => item.Description)
+
+                </p>
+
+                <p class="card-text">
+                    <small class="text-muted">
+                        <b>Author :</b> @Html.DisplayFor(model => item.Authors.FullName)
+                    </small>
+                    <small class="text-muted text-right">
+                        <b>Status :</b> @Html.DisplayFor(model => item.Status)
+                    </small>
+                </p>
+               
+                <a href="#" data-id="@item.Id" class="card-link edit-item-btn">Edit</a>
+                <a asp-action="Delete" asp-controller="Journals" asp-route-id="@item.Id" class="card-link">Delete</a>
+            </div>
+
+           
+        </div>
+    </div>
+}

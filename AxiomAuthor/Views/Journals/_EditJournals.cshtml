@@ -1,0 +1,70 @@
+﻿@model AxiomAuthor.ViewModel.JournalsViewModel
+
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="GetJournals.Id" />
+
+    <div class="row">
+        <div class="col mb-3">
+            <label class="control-label">Author Name</label>
+            <input disabled class="form-control" value="@ViewBag.User" name="@ViewBag.User" />
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label asp-for="GetJournals.Title" class="control-label"></label>
+            <input asp-for="GetJournals.Title" class="form-control" />
+            <span asp-validation-for="GetJournals.Title" class="text-danger"></span>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label asp-for="GetJournals.CategoryId" class="control-label"></label>
+            <select asp-for="GetJournals.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+        </div>
+        <div class="col mb-3">
+
+            <label asp-for="GetJournals.TotalPages" class="control-label"></label>
+            <input asp-for="GetJournals.TotalPages" class="form-control" />
+            <span asp-validation-for="GetJournals.TotalPages" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label asp-for="GetJournals.Description" class="control-label"></label>
+            <textarea asp-for="GetJournals.Description" rows="3" class="form-control"></textarea>
+            <span asp-validation-for="GetJournals.Description" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label asp-for="GetJournals.CoverPhoto" class="control-label"></label>
+            <input asp-for="GetJournals.CoverPhoto" type="file" class="form-control">
+            <span asp-validation-for="GetJournals.CoverPhoto" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label asp-for="GetJournals.BookPdf" class="control-label"></label>
+            <input asp-for="GetJournals.BookPdf" id="pdfInput" type="file" class="form-control">
+            <span asp-validation-for="GetJournals.BookPdf" class="text-danger"></span>
+        </div>
+
+        
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            Close
+        </button>
+        <button type="submit" class="btn btn-primary">Submit changes</button>
+    </div>
+</form>

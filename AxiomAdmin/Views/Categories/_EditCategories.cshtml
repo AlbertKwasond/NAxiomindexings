@@ -1,0 +1,21 @@
+﻿
+@model AxiomAdmin.ViewModel.CategoryViewModel
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="GetCategory.Id" />
+
+    <div class="row">
+        <div class="col mb-3">
+            <label asp-for="GetCategory.Name" class="control-label"></label>
+            <input asp-for="GetCategory.Name" class="form-control" />
+            <span asp-validation-for="GetCategory.Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            Close
+        </button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+    </div>
+</form>

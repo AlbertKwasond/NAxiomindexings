@@ -1,0 +1,62 @@
+﻿@model IEnumerable<DMS.Models.BoardOfDirectorsContext>
+@{
+    ViewData["Title"] = "Board Of Directors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!-- Page Title Start -->
+<section class="page-title title-bg7">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <h2>Board Of Directors</h2>
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>Board Of Directors</li>
+            </ul>
+        </div>
+    </div>
+    <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+</section>
+<!-- Page Title End -->
+<!-- Board Of Directors Section Start -->
+<section class="candidate-style-two pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-sm-6">
+                    <div class="candidate-card">
+                        <div class="candidate-img">
+                            <img src="@Url.Content("~/assets/img/directors/")@item.ImageUrl" alt="candidate image" height="300">
+                        </div>
+                        <div class="candidate-text">
+                            <h3>
+                                @Html.DisplayFor(model => item.FullName)
+
+                            </h3>
+                            <ul>
+                                <li>
+                                    @Html.DisplayFor(model => item.Position)
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="candidate-social">
+                            <a href="#" target="_blank"><i class="bx bxl-facebook"></i></a>
+                            <a href="#" target="_blank"><i class="bx bxl-twitter"></i></a>
+                            <a href="#" target="_blank"><i class="bx bxl-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- Board Of Directors Section End -->
