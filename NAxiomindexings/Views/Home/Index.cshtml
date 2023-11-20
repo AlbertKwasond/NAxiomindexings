@@ -31,21 +31,19 @@
 <!-- Find Section Start -->
 <div class="find-section pb-100">
 	<div class="container">
-		<form class="find-form">
+		<form asp-action="Search" class="find-form">
 			<div class="row">
 				<div class="col-md-4">
-					<select class="category">
+					<select id="category" name="category" class="category">
 						<option data-display="Category">Category</option>
-						<option value="1">Web Development</option>
-						<option value="2">Graphics Design</option>
-						<option value="4">Data Entry</option>
-						<option value="5">Visual Editor</option>
-						<option value="6">Office Assistant</option>
+						<option value="Journals">Journals</option>
+						<option value="Author">Author</option>
+						
 					</select>
 				</div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Title or Keyword">
+						<input type="text" class="form-control" id="inputSearch" name="inputSearch" placeholder="Journals or Author">
 						<i class="bx bx-search-alt"></i>
 					</div>
 				</div>
@@ -388,3 +386,9 @@
 	</div>
 </section>
 <!-- Blog Section End -->
+
+								
+@section Scripts {
+
+	<script src="~/assets/js/autocomplete.js"></script>
+}

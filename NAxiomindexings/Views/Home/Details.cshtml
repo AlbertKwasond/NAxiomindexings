@@ -1,0 +1,162 @@
+﻿@model NAxiomindexings.ViewModel.JournalsViewModel
+@{
+	ViewData["Title"] = "Details";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Page Title Start -->
+<section class="page-title title-bg6">
+	<div class="d-table">
+		<div class="d-table-cell">
+			<h2>Journals Details</h2>
+			<ul>
+				<li>
+					<a asp-action="Index">Home</a>
+				</li>
+				<li>Journals Details</li>
+			</ul>
+		</div>
+	</div>
+	<div class="lines">
+		<div class="line"></div>
+		<div class="line"></div>
+		<div class="line"></div>
+	</div>
+</section>
+<!-- Page Title End -->
+<!-- Job Details Section Start -->
+<section class="job-details ptb-100">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="job-details-text">
+							<div class="job-card">
+								<div class="row align-items-center">
+									<div class="col-md-4">
+										<div class="card ">
+											<img src="@Url.Content("~/assets/img/journal/cover/"+ Model.GetJournals.CoverImageUrl)" alt="logo" height="356">
+
+										</div>
+									</div>
+									<div class="col-md-7">
+										<div class="job-info">
+											<h3>
+												@Html.DisplayFor(model => model.GetJournals.Title)
+											</h3>
+											<ul>
+
+												<li>
+													<i class='bx bx-filter-alt'></i>
+													@Html.DisplayFor(model => model.GetJournals.Categories.Name)
+
+												</li>
+
+											</ul>
+
+											<span>
+												<i class='bx bx-paper-plane'></i>
+												Apply Before: @Html.DisplayFor(model => model.GetJournals.CreatedOn)
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="details-text">
+								<h3>Description</h3>
+								<p>
+									@Html.DisplayFor(model => model.GetJournals.Description)
+
+								</p>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="job-sidebar">
+					<h3>Posted By</h3>
+					<div class="posted-by">
+						<h4>
+							@Html.DisplayFor(model => model.GetJournals.Authors.FullName)
+					</div>
+				</div>
+				<div class="job-sidebar">
+					<div class="theme-btn">
+						<a asp-action="DownloadPdf" asp-route-journalId="@Model.GetJournals.Id" class="default-btn" target="_blank" class="default-btn">
+							Download PDF
+						</a>
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Job Details Section End -->
+<!-- Job Section End -->
+<section class="job-style-two pt-100 pb-70">
+	<div class="container">
+
+		<div class="row">
+			@foreach (var item in Model.ListJournals)
+			{
+				<div class="col-md-9">
+					<div class="job-card">
+						<div class="row align-items-center">
+							<div class="col-lg-3">
+
+								<a asp-action="Details" asp-route-id="@item.Id">
+									<img src="@Url.Content("~/assets/img/journal/cover/"+ item.CoverImageUrl)" alt="company logo" width="235" height="235">
+
+								</a>
+
+							</div>
+
+							<div class="col-lg-6">
+								<div class="job-info">
+									<h3>
+										<a asp-action="Details" asp-route-id="@item.Id">@item.Title</a>
+									</h3>
+									<ul>
+
+										<li>Authors Fullname <a href="#">@item.Authors.FullName</a></li>
+										<li>
+											<i> Description: <p> @(item.Description.Length > 150 ? item.Description.Substring(0, 150) + "..." : item.Description)</p> </i>
+										</li>
+										<li>
+											<i class='bx bx-filter-alt'></i>
+											@item.Categories.Name
+										</li>
+
+									</ul>
+								</div>
+							</div>
+
+							<div class="col-lg-3">
+								<div class="job-save">
+									<a asp-action="Details" asp-route-id="@item.Id">
+										<span>Read More</span>
+
+									</a>
+
+									<p>
+										<i class='bx bx-stopwatch'></i>
+										@item.CreatedOn
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</section>
+<!-- Job Section End -->
