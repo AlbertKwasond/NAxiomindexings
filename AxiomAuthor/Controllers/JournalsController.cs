@@ -1,25 +1,32 @@
 ﻿using AxiomAuthor.Data;
 using AxiomAuthor.ViewModel;
 using DMS.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Security.Claims;
 
 namespace AxiomAuthor.Controllers
 {
+    [Authorize(Roles = "Author")]
     public class JournalsController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IConfiguration _configuration;
+        private readonly string? hostLinktoken;
 
-        public JournalsController(ApplicationDbContext context, UserManager<IdentityUser> userManager, IWebHostEnvironment hostingEnvironment)
+        public JournalsController(ApplicationDbContext context, UserManager<IdentityUser> userManager, IWebHostEnvironment hostingEnvironment, IConfiguration configuration)
         {
             _context = context;
             _userManager = userManager;
             _hostingEnvironment = hostingEnvironment;
+            _configuration = configuration;
+            hostLinktoken = _configuration["HostLink:URLlink"];
         }
 
         public string? Username { get; set; }
@@ -29,7 +36,7 @@ namespace AxiomAuthor.Controllers
             var email = await _userManager.GetEmailAsync(user);
         }
 
-        // GET: Journals
+        [Route("journals")]
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -104,7 +111,7 @@ namespace AxiomAuthor.Controllers
                 // Save to disk or perform other operations
 
                 // Get the root directory of the NAxiomindexings project
-                string rootDirectory = Path.Combine(_hostingEnvironment.ContentRootPath, "../NAxiomindexings");
+                string rootDirectory = Path.Combine(_hostingEnvironment.ContentRootPath, hostLinktoken);
 
                 // Define the path to the folder where you want to save the image in the NAxiomindexings project
                 string uploadCoverFolder = Path.Combine(rootDirectory, "wwwroot/assets/img/journal/cover");
@@ -235,7 +242,7 @@ namespace AxiomAuthor.Controllers
                         // Delete the old image file from the server's file system (if it exists)
                         if (!string.IsNullOrEmpty(existingJournals.CoverImageUrl))
                         {
-                            var rootDirectory = Path.Combine(_hostingEnvironment.ContentRootPath, "../NAxiomindexings");
+                            var rootDirectory = Path.Combine(_hostingEnvironment.ContentRootPath, hostLinktoken);
                             var oldFilePath = Path.Combine(rootDirectory, "wwwroot/assets/img/journal/cover", existingJournals.CoverImageUrl);
 
                             if (System.IO.File.Exists(oldFilePath))
@@ -246,7 +253,7 @@ namespace AxiomAuthor.Controllers
 
                         // Save the new image file to the server's file system
                         string uniqueUpdateFileName = Guid.NewGuid().ToString() + "_" + updateCoverPhoto.FileName;
-                        string uploadFolder = Path.Combine(_hostingEnvironment.ContentRootPath, "../NAxiomindexings/wwwroot/assets/img/journal/cover");
+                        string uploadFolder = Path.Combine(_hostingEnvironment.ContentRootPath, "../https://axiomindexing.com/wwwroot/assets/img/journal/cover");
                         string newFilePath = Path.Combine(uploadFolder, uniqueUpdateFileName);
 
                         using (var fileStream = new FileStream(newFilePath, FileMode.Create))
@@ -299,7 +306,7 @@ namespace AxiomAuthor.Controllers
             // Delete the old image file from the server's file system (if it exists)
             if (!string.IsNullOrEmpty(journals.CoverImageUrl))
             {
-                var rootDirectory = Path.Combine(_hostingEnvironment.ContentRootPath, "../NAxiomindexings");
+                var rootDirectory = Path.Combine(_hostingEnvironment.ContentRootPath, "../https://axiomindexing.com");
                 var oldFilePath = Path.Combine(rootDirectory, "wwwroot/assets/img/journal/cover", journals.CoverImageUrl);
 
                 if (System.IO.File.Exists(oldFilePath))
@@ -311,7 +318,7 @@ namespace AxiomAuthor.Controllers
             // Delete the old pdf file from the server's file system (if it exists)
             if (!string.IsNullOrEmpty(journals.BookPdfUrl))
             {
-                var rootDirectory = Path.Combine(_hostingEnvironment.ContentRootPath, "../NAxiomindexings");
+                var rootDirectory = Path.Combine(_hostingEnvironment.ContentRootPath, "../https://axiomindexing.com");
                 var oldPdfFilePath = Path.Combine(rootDirectory, "wwwroot/assets/img/journal/pdf", journals.BookPdfUrl);
 
                 if (System.IO.File.Exists(oldPdfFilePath))

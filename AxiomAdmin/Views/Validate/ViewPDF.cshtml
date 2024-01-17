@@ -1,0 +1,51 @@
+﻿@model DMS.Models.Journals
+
+@{
+    ViewData["Title"] = "ViewPDF";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Create a container for the PDF viewer -->
+<div id="pdf-viewer"></div>
+<h1>ViewPDF</h1>
+
+@section Scripts{
+    <!-- Include Pdf.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <!-- Use a specific version of Pdf.js -->
+  
+
+    <script>
+        function loadPdf(pdfUrl) {
+            var container = document.getElementById('pdf-viewer');
+
+            pdfjsLib.getDocument(pdfUrl).promise.then(function (pdfDoc) {
+                for (var pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+                    var canvas = document.createElement('canvas');
+                    container.appendChild(canvas);
+
+                    pdfDoc.getPage(pageNum).then(function (page) {
+                        var viewport = page.getViewport({ scale: 1.5 });
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+
+                        var renderContext = {
+                            canvasContext: canvas.getContext('2d'),
+                            viewport: viewport
+                        };
+
+                        page.render(renderContext).catch(function (error) {
+                            console.error('Error rendering page:', error);
+                        });
+                    });
+                }
+            }).catch(function (error) {
+                console.error('Error loading PDF:', error);
+            });
+        }
+
+        loadPdf('http://localhost:7043/assets/img/journal/pdf/@Model.BookPdfUrl');
+
+    </script>
+
+}

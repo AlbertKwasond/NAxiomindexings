@@ -109,31 +109,18 @@ namespace NAxiomindexings.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("FeaturedImageUrl")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Heading")
                         .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("PageTitle")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<DateTime>("PublishedDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("ShortDescription")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("UrlHandle")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Visible")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<bool>("Visible")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("Id");
 
@@ -237,8 +224,8 @@ namespace NAxiomindexings.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
 
                     b.Property<DateTime>("LastUpdatedOn")
                         .HasColumnType("datetime(6)");
@@ -307,6 +294,80 @@ namespace NAxiomindexings.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TeamContexts");
+                });
+
+            modelBuilder.Entity("DMS.Models.UsersAccount", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("DOB")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
+
+                    b.Property<string>("MobileNumber")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Roles")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Username")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UsersAccounts");
+                });
+
+            modelBuilder.Entity("DMS.Models.Volunteers", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Volunteers");
                 });
 
             modelBuilder.Entity("DMS.Models.dbConcurrencyStamp", b =>

@@ -20,5 +20,6 @@ namespace NAxiomindexings.Data
         public DbSet<Author> Authors { get; set; }
         public DbSet<Journals> Journals { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Volunteers> Volunteers { get; set; }
     }
 }

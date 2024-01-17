@@ -1,11 +1,14 @@
 ﻿using AxiomAdmin.Data;
 using AxiomAdmin.ViewModel;
 using DMS.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace AxiomAdmin.Controllers
 {
+    [Authorize(Roles = "Administrator,Super-Administration")]
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;

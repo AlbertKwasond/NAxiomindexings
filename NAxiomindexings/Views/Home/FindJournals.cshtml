@@ -1,0 +1,173 @@
+﻿@model NAxiomindexings.ViewModel.JournalsViewModel
+
+@{
+	ViewData["Title"] = "Find a Journals";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Page Title Start -->
+<section class="page-title title-bg2">
+	<div class="d-table">
+		<div class="d-table-cell">
+			<h2>Find Journals</h2>
+			<ul>
+				<li>
+					<a href="index.html">Home</a>
+				</li>
+				<li>Find  Journals</li>
+			</ul>
+		</div>
+	</div>
+	<div class="lines">
+		<div class="line"></div>
+		<div class="line"></div>
+		<div class="line"></div>
+	</div>
+</section>
+<!-- Page Title End -->
+<!-- Find Section Start -->
+<div class="find-section ptb-50">
+	<div class="container">
+		<form asp-action="SearchJournals" class="find-form mt-0">
+			<div class="row">
+				<div class="col-lg-9">
+					<div class="form-group">
+						<input type="text" class="form-control" id="inputSearch" name="inputSearch" placeholder="Job Title or Keyword">
+						<i class="bx bx-search-alt"></i>
+					</div>
+				</div>
+
+
+
+				<div class="col-lg-3">
+					<button type="submit" class="find-btn">
+						Find  Journals
+						<i class='bx bx-search'></i>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- Find Section End -->
+<!-- Job Category Section Start -->
+<div class="category-style-two pb-70">
+	<div class="container">
+		<div class="section-title">
+			<h2>Category of Journals </h2>
+		</div>
+
+		<div class="row">
+			@foreach (var items in Model.ListCategories)
+			{
+			<div class="col-lg-3 col-sm-6">
+					<a asp-action="Categories" asp-route-id="@items.Id">
+					<div class="category-item">
+						<i class="flaticon-wrench-and-screwdriver-in-cross"></i>
+						<h3>@items.Name</h3>
+							<p>@items.Journals.Count() total number of Journals</p>
+					</div>
+				</a>
+			</div>
+			}
+
+		
+		</div>
+	</div>
+</div>
+<!-- Job Category Section End -->
+
+<section class="blog-section blog-style-two pb-70">
+	<div class="container">
+
+		<div class="row" id="journalList">
+			<!-- Your journal items go here -->
+			@foreach (var item in Model.ListJournals)
+			{
+				<div class="col-sm-3">
+					<div class="blog-card">
+						<div class="blog-img">
+							<a asp-action="Details" asp-route-id="@item.Id">
+								<img src="@Url.Content("~/assets/img/journal/cover/" + item.CoverImageUrl)" alt="company logo" width="360" height="335">
+							</a>
+						</div>
+						<div class="blog-text">
+							<ul>
+								<li>
+									<i class='bx bxs-user'></i>
+									<a href="#">@item.Authors.FullName</a>
+								</li>
+							</ul>
+							<h3>
+								<a asp-action="Details" asp-route-id="@item.Id">@item.Title</a>
+							</h3>
+							<p>@(item.Description.Length > 100 ? item.Description.Substring(0, 100) + "..." : item.Description)</p>
+							<a asp-action="Details" asp-route-id="@item.Id" class="blog-btn">
+								Read More
+								<i class='bx bx-plus bx-spin'></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center" id="pagination">
+				<!-- Pagination links will be added dynamically here -->
+				<nav aria-label="Page navigation example">
+					<ul class="pagination justify-content-center" id="pagination">
+						@for (int i = 1; i <= Model.TotalPages; i++)
+						{
+							<li class="page-item @(i == Model.PageNumber ? "active" : "")">
+								<a class="page-link" asp-action="FindJournalsAsync" asp-route-page="@i">@i</a>
+							</li>
+						}
+					</ul>
+				</nav>
+
+			</ul>
+		</nav>
+	</div>
+
+</section>
+
+@section Scripts {
+	<!-- Include jQuery -->
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+	<!-- Include twbs-pagination -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.3/jquery.twbsPagination.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.3/jquery.twbsPagination.min.js"></script>
+
+
+
+	<script>
+		$(document).ready(function () {
+			var totalPages = @Model.TotalPages; // Total number of pages from your ViewModel
+			var currentPage = @Model.PageNumber; // Current page from your ViewModel
+
+			$('#pagination').twbsPagination({
+				totalPages: totalPages,
+				startPage: currentPage,
+				visiblePages: 3,
+				onPageClick: function (event, page) {
+					loadJournalData(page);
+				}
+			});
+
+			function loadJournalData(page) {
+				$.ajax({
+					url: '@Url.Action("FindJournalsAsync")',
+					type: 'GET',
+					data: { page: page },
+					success: function (data) {
+						$('#journalList').html(data);
+					},
+					error: function () {
+						console.log('Error loading data.');
+					}
+				});
+			}
+		});
+	</script>
+}

@@ -1,83 +1,48 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NAxiomindexings.Data;
+using NAxiomindexings.ViewModel;
 
 namespace NAxiomindexings.Controllers
 {
-    public class BlogController : Controller
-    {
-        // GET: BlogController
-        public ActionResult Index()
-        {
-            return View();
-        }
+	public class BlogController : Controller
+	{
+		private readonly ApplicationDbContext _context;
+		private readonly IWebHostEnvironment _hostingEnvironment;
 
-        // GET: BlogController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+		public BlogController(ApplicationDbContext context, IWebHostEnvironment hostingEnvironment)
+		{
+			_context = context;
+			_hostingEnvironment = hostingEnvironment;
+		}
 
-        // GET: BlogController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+		// GET: BlogController
+		public async Task<ActionResult> IndexAsync()
+		{
+			return _context.BlogPosts != null ?
+						View(await _context.BlogPosts.ToListAsync()) :
+						Problem("Entity set 'ApplicationDbContext.BlogPost'  is null.");
+		}
 
-        // POST: BlogController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+		// GET: BlogController/Details/5
+		public async Task<IActionResult> Details(Guid Id)
+		{
+			var blogDetails = await _context.BlogPosts
+				.Where(x => x.Id == Id && x.Visible == true)
+				.FirstOrDefaultAsync();
 
-        // GET: BlogController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+			var listBlog = await _context.BlogPosts
+				.Where(j => j.Id != blogDetails.Id && j.Visible == true) // Exclude the selected blog posts
+				.Take(4) // Take only the top 4 blog posts
+				.ToListAsync();
 
-        // POST: BlogController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+			var viewModel = new BlogPostViewModel
+			{
+				GetBlogPost = blogDetails,
+				ListBlogPosts = listBlog
+			};
 
-        // GET: BlogController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: BlogController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-    }
+			return View(viewModel);
+		}
+	}
 }

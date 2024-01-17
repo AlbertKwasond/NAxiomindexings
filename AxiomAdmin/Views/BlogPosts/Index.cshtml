@@ -1,0 +1,48 @@
+﻿@model IEnumerable<DMS.Models.BlogPost>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Contexts /</span> Blog Post</h4>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary">
+            Create New Blog Post
+        </a>
+    </p>
+
+
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <img class="card-img-top" src="@Url.Content("https://localhost:7043/assets/img/blog/"+item.FeaturedImageUrl)" alt="Card image cap" height="366" />
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            @Html.DisplayFor(model => item.Heading)
+                        </h5>
+                        <p class="card-text">
+                            @{
+                                var plainText = System.Text.RegularExpressions.Regex.Replace(item.Context, "<.*?>", ""); // Remove HTML tags
+                                var truncatedText = plainText.Length > 300 ? plainText.Substring(0, 300) + "..." : plainText;
+                                @Html.Raw(truncatedText)
+                            }
+                        </p>
+
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="card-link edit-item-btn">
+                            Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="card-link">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>
+    <!--/ Style variation -->
+
+
+</div>

@@ -1,0 +1,205 @@
+﻿
+@{
+    ViewData["Title"] = "AdminDashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+        <div class="col-lg-12 mb-4 order-0">
+            <div class="card">
+                <div class="d-flex align-items-end row">
+                    <div class="col-sm-7">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">@ViewBag.greeting, @ViewBag.User! 🎉</h5>
+                            <p class="mb-4">
+                                <span id="live-time" class="fw-bold"></span>
+                             
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-5 text-center text-sm-left">
+                        <div class="card-body pb-0 px-0 px-md-4">
+                            <img src="../assets/img/illustrations/man-with-laptop-light.png"
+                                 height="140"
+                                 alt="View Badge User"
+                                 data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                                 data-app-light-img="illustrations/man-with-laptop-light.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-12 col-md-4 order-1">
+            <div class="row">
+                <div class="col-lg-3 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="../assets/img/icons/unicons/chart-success.png"
+                                         alt="chart success"
+                                         class="rounded" />
+                                </div>
+                            </div>
+                            <span>Total Number Of Team </span>
+                            <h3 class="card-title mb-2">@ViewBag.TotalTeams</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="../assets/img/icons/unicons/wallet-info.png"
+                                         alt="Credit Card"
+                                         class="rounded" />
+                                </div>
+                            </div>
+                            <span>Total Number Of Board Of Directors </span>
+                            <h3 class="card-title text-nowrap mb-1">@ViewBag.TotalDirectors</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="../assets/img/icons/unicons/wallet-info.png"
+                                         alt="Credit Card"
+                                         class="rounded" />
+                                </div>
+                            </div>
+                            <span>Total Number Of Volunteers</span>
+                            <h3 class="card-title text-nowrap mb-1">@ViewBag.TotalVolunteers</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="../assets/img/icons/unicons/wallet-info.png"
+                                         alt="Credit Card"
+                                         class="rounded" />
+                                </div>
+                            </div>
+                            <span>Total Number Of Blog Posts</span>
+                            <h3 class="card-title text-nowrap mb-1">@ViewBag.TotalBlog</h3>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-3 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="../assets/img/icons/unicons/wallet-info.png"
+                                         alt="Credit Card"
+                                         class="rounded" />
+                                </div>
+                            </div>
+                            <span>Total Number Of Validate Journals</span>
+                            <h3 class="card-title text-nowrap mb-1">@ViewBag.TotalValidateJournals</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="../assets/img/icons/unicons/wallet-info.png"
+                                         alt="Credit Card"
+                                         class="rounded" />
+                                </div>
+                            </div>
+                            <span>Total Number Of Approve Journals</span>
+                            <h3 class="card-title text-nowrap mb-1">@ViewBag.TotalApproveJournals</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="../assets/img/icons/unicons/wallet-info.png"
+                                         alt="Credit Card"
+                                         class="rounded" />
+                                </div>
+                            </div>
+                            <span>Total Number Of Declined Journals</span>
+                            <h3 class="card-title text-nowrap mb-1">@ViewBag.TotalDeclinedJournals</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="../assets/img/icons/unicons/wallet-info.png"
+                                         alt="Credit Card"
+                                         class="rounded" />
+                                </div>
+                            </div>
+                            <span>Total Number Of Staff</span>
+                            <h3 class="card-title text-nowrap mb-1">@ViewBag.TotalStaff</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        function updateTime() {
+            var currentTime = new Date();
+            var timeZoneOffset = 0; // Ghana time zone offset is 0 (GMT+0)
+            currentTime.setHours(currentTime.getHours() + timeZoneOffset);
+
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+
+            // Pad the minutes and seconds with leading zeros if needed
+            minutes = (minutes < 10 ? "0" : "") + minutes;
+            seconds = (seconds < 10 ? "0" : "") + seconds;
+
+            // Determine AM or PM string
+            var amPM = hours >= 12 ? "PM" : "AM";
+
+            // Convert the hours to 12-hour format
+            hours = hours > 12 ? hours - 12 : hours;
+
+            // Convert an hours value of 0 to 12
+            hours = hours === 0 ? 12 : hours;
+
+            // Build the full time string
+            var timeString = hours + ":" + minutes + ":" + seconds + " " + amPM;
+
+            // Set the time on the element
+            document.getElementById("live-time").textContent = timeString;
+        }
+
+        // Call updateTime function every second to update the time
+        setInterval(updateTime, 1000);
+    </script>
+
+
+}

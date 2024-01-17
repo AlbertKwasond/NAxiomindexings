@@ -1,0 +1,243 @@
+﻿@model DMS.Models.Journals
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Validate /</span> Details</h4>
+
+
+
+    <!-- Horizontal -->
+    <div class="row mb-5">
+        <div class="col-md-10">
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img class="card-img card-img-left" src="~/assets/img/elements/12.jpg" alt="Card image" />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                @Html.DisplayFor(model => model.Title)
+                            </h5>
+                            <p class="card-text">
+                                @Html.DisplayFor(model => model.Description)
+
+                            </p>
+                            <p class="card-text">
+
+                                <ul>
+                                    <li>
+                                        <i class='bx bxs-user'></i>
+                                        @Html.DisplayFor(model => model.Authors.FullName)
+                                    </li>
+                                    <li>
+                                        <i class='bx bx-calendar'></i>
+                                        @Html.DisplayFor(model => model.CreatedOn)
+                                    </li>
+                                    <li>
+                                        @Html.DisplayNameFor(model => model.TotalPages): 
+                                        @Html.DisplayFor(model => model.TotalPages)
+                                    </li>
+                                    <li>
+                                        @Html.DisplayNameFor(model => model.Categories): 
+                                        @Html.DisplayFor(model => model.Categories.Name)
+                                    </li>
+                                    <li>
+                                        <div class="badge bg-label-warning me-1">
+                                            @Html.DisplayFor(model => model.BookPdfUrl)
+                                        </div>
+                                    </li>
+                                </ul>
+                                
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ Horizontal -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header border-bottom p-1">
+
+                    <div class="head-label"><h6 class="mb-0"> </h6></div>
+                    <div class="dt-action-buttons text-end">
+                        <form method="post" id="Create" data-ajax="true" data-ajax-method="post" data-ajax-success="ajaxSuccess" data-ajax-failure="ajaxFailure">
+                            <input type="hidden" asp-for="Id" />
+
+                            <div class="dt-buttons d-inline-flex">
+
+
+                                <a asp-action="ViewPDF" asp-route-id="@Model.Id" class="btn btn-outline-primary round waves-effect  me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button">
+                                    <span>
+                                        View PDF
+                                    </span>
+                                </a>
+
+
+                                <button id="approvalsButton" class="btn btn-outline-success round waves-effect  me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button">
+                                    <span>
+                                        Approve
+                                    </span>
+                                </button>
+                                <button id="declineButton" class="btn btn-outline-danger round waves-effect" tabindex="0" aria-controls="DataTables_Table_0" type="button">
+
+                                    <span>
+                                        Decline
+                                    </span>
+                                </button>
+                            </div>
+
+                        </form>
+
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- / Content -->
+
+@section Scripts {
+
+    <script src="~/lib/pdf.js/build/pdf.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#approvalsButton").click(function (event) {
+                event.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'Are you sure you want to approve this journals?',
+                    icon: 'warning',
+                    type: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                }).then((result) => {
+                    if (result.value) {
+                        $("#approvalsButton").prop("disabled", true);
+                        $("#Create").attr("action", "@Url.Action("Approved")"); // set the form action to OfficerSubmitApprovals
+                        $("#Create").submit();
+                    }
+                });
+            });
+
+            $(document).bind("ajaxComplete", function () {
+                $("#approvalsButton, #declineButton").prop("disabled", false);
+            });
+        });
+
+        function ajaxComplete(xhr, status) {
+            // Code to handle the completion of the AJAX call
+        }
+
+        function ajaxSuccess(data, status, xhr) {
+            // Code to handle a successful AJAX call
+            Swal.close();
+            Swal.fire({
+                title: 'Success',
+                icon: 'success',
+                text: 'Journals record successfully saved',
+                type: 'success',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = '/Validate/ValidateList';
+
+                }
+            });
+        }
+
+        function ajaxFailure(xhr, status, error) {
+            // Get the error message from the server response
+            var errorMessage = xhr.responseText;
+
+            Swal.close();
+            Swal.fire({
+                title: 'Error',
+                text: errorMessage,
+                icon: 'error',
+                type: 'error',
+                confirmButtonText: 'OK'
+            });
+        }
+
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $(document).ready(function () {
+                $("#declineButton").click(function (event) {
+                    event.preventDefault();
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: 'Are you sure you want to decline this journals(s)?',
+                        icon: 'warning',
+                        type: 'question',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes',
+                    }).then((result) => {
+                        if (result.value) {
+                            $("#declineButton").prop("disabled", true);
+                            $("#Create").attr("action", "@Url.Action("Declined")"); // set the form action to OfficerSubmitRejected
+                            $("#Create").submit();
+                        }
+                    });
+                });
+
+                $(document).bind("ajaxComplete", function () {
+                    $("#approvalsButton, #declineButton").prop("disabled", false);
+                });
+            });
+
+            function ajaxComplete(xhr, status) {
+                // Code to handle the completion of the AJAX call
+            }
+
+            function ajaxSuccess(data, status, xhr) {
+                // Code to handle a successful AJAX call
+                Swal.close();
+                Swal.fire({
+                    title: 'Success',
+                    icon: 'success',
+                    text: 'Staff record successfully saved',
+                    type: 'success',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        window.location.href = '/Validate/ValidateList';
+
+                    }
+                });
+            }
+
+            function ajaxFailure(xhr, status, error) {
+                // Get the error message from the server response
+                var errorMessage = xhr.responseText;
+
+                Swal.close();
+                Swal.fire({
+                    title: 'Error',
+                    text: errorMessage,
+                    icon: 'error',
+                    type: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+
+
+
+        });
+
+    </script>
+}

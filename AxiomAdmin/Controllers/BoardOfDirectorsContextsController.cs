@@ -1,17 +1,21 @@
 ﻿using AxiomAdmin.Data;
 using AxiomAdmin.ViewModel;
 using DMS.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace AxiomAdmin.Controllers
 {
+    [Authorize(Roles = "Administrator,Super-Administration")]
     public class BoardOfDirectorsContextsController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly IConfiguration _configuration;
         private readonly ILogger<TeamContextsController> _logger;
+        private readonly string hostLinktoken;
 
         public BoardOfDirectorsContextsController(ApplicationDbContext context, IConfiguration configuration, IWebHostEnvironment hostingEnvironment, ILogger<TeamContextsController> logger)
         {
@@ -19,6 +23,7 @@ namespace AxiomAdmin.Controllers
             _configuration = configuration;
             _hostingEnvironment = hostingEnvironment;
             _logger = logger;
+            hostLinktoken = _configuration["HostLink:URLlink"];
         }
 
         // GET: BoardOfDirectorsContexts
@@ -72,7 +77,7 @@ namespace AxiomAdmin.Controllers
             try
             {
                 // Get the root directory of the NAxiomindexings project
-                string rootDirectory = Path.Combine(_hostingEnvironment.ContentRootPath, "../NAxiomindexings");
+                string rootDirectory = Path.Combine(_hostingEnvironment.ContentRootPath, hostLinktoken);
 
                 // Define the path to the folder where you want to save the image in the NAxiomindexings project
                 string uploadFolder = Path.Combine(rootDirectory, "wwwroot/assets/img/directors");

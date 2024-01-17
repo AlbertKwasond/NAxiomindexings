@@ -1,0 +1,174 @@
+﻿@model AxiomAdmin.ViewModel.UsersAccountsViewModle
+
+@{
+    ViewData["Title"] = "Edit Staff Information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Staff Accounts/</span> Edit Staff Information</h4>
+
+    <!-- Basic Layout -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+
+                <div class="card-body">
+
+                    <form asp-action="Edit" id="updateId" data-ajax="true" data-ajax-method="post" data-ajax-success="ajaxSuccess" data-ajax-failure="ajaxFailure">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <input type="hidden" id="id" name="id" asp-for="GetUsersAccount.Id" />
+                        <input type="hidden" id="Username" name="Username" asp-for="GetUsersAccount.Username" />
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="GetUsersAccount.FirstName" class="control-label"></label>
+                                    <input id="FirstName" name="FirstName" asp-for="GetUsersAccount.FirstName" class="form-control" />
+                                    <span asp-validation-for="GetUsersAccount.FirstName" class="text-danger"></span>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="GetUsersAccount.LastName" class="control-label"></label>
+                                    <input id="LastName" name="LastName" asp-for="GetUsersAccount.LastName" class="form-control" />
+                                    <span asp-validation-for="GetUsersAccount.LastName" class="text-danger"></span>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="GetUsersAccount.Gender" class="control-label"></label>
+                                    <select id="Gender" name="Gender" asp-for="GetUsersAccount.Gender" class="form-control">
+                                        <option value="" selected>Select a gender</option>
+                                        <option value="Male">Male </option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                    <span asp-validation-for="GetUsersAccount.Gender" class="text-danger"></span>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="GetUsersAccount.DOB" class="control-label"></label>
+                                    <input id="DOB" name="DOB" asp-for="GetUsersAccount.DOB" class="form-control" />
+                                    <span asp-validation-for="GetUsersAccount.DOB" class="text-danger"></span>
+                                </div>
+                            </div><!--end col-->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="GetUsersAccount.MobileNumber" class="control-label"></label>
+                                    <input id="MobileNumber" name="MobileNumber" asp-for="GetUsersAccount.MobileNumber" class="form-control" />
+                                    <span asp-validation-for="GetUsersAccount.MobileNumber" class="text-danger"></span>
+                                </div>
+                            </div><!--end col-->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="GetUsersAccount.Email" class="control-label"></label>
+                                    <input id="Email" name="Email" asp-for="GetUsersAccount.Email" class="form-control" />
+                                    <span asp-validation-for="GetUsersAccount.Email" class="text-danger"></span>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="GetUsersAccount.Address" class="control-label"></label>
+                                    <input id="Address" name="Address" asp-for="GetUsersAccount.Address" class="form-control" />
+                                    <span asp-validation-for="GetUsersAccount.Address" class="text-danger"></span>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="GetUsersAccount.Roles" class="control-label"></label>
+
+                                    <select id="Roles" name="Roles" asp-for="GetUsersAccount.Roles" class="form-control" asp-for="GetUsersAccount.Roles" asp-items="Model.Roles">
+                                        <option value="" selected>Select a role</option>
+                                    </select>
+
+                                    <span asp-validation-for="GetUsersAccount.Roles" class="text-danger"></span>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-lg-12">
+                                <div class="text-end">
+                                    <button id="submitButton" type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            $("#submitButton").click(function (event) {
+                event.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'Are you sure you want to Update this Staff Information?',
+                    icon: 'warning',
+                    type: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                }).then((result) => {
+                    if (result.value) {
+                        $("#submitButton").prop("disabled", true);
+                        $("#updateId").submit();
+                    }
+                });
+            });
+
+            $(document).bind("ajaxComplete", function () {
+                $("#submitButton").prop("disabled", false);
+            });
+        });
+
+        function ajaxComplete(xhr, status) {
+            // Code to handle the completion of the AJAX call
+        }
+
+        function ajaxSuccess(data, status, xhr) {
+            // Code to handle a successful AJAX call
+            Swal.close();
+            Swal.fire({
+                title: 'Success',
+                icon: 'success',
+                text: 'Staff record successfully updated',
+                type: 'success',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = '/UsersAccounts/Index';
+                }
+            });
+        }
+
+        function ajaxFailure(xhr, status, error) {
+            // Get the error message from the server response
+            var errorMessage = xhr.responseText;
+
+            Swal.close();
+            Swal.fire({
+                title: 'Error',
+                text: errorMessage,
+                icon: 'error',
+                type: 'error',
+                confirmButtonText: 'OK'
+            });
+        }
+
+
+    </script>
+
+}

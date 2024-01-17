@@ -16,5 +16,9 @@ namespace AxiomAdmin.Data
         public DbSet<TeamContext> TeamContexts { get; set; }
         public DbSet<BoardOfDirectorsContext> BoardOfDirectorsContexts { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<BlogPost> BlogPosts { get; set; }
+        public DbSet<Volunteers> Volunteers { get; set; }
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Journals> Journals { get; set; }
     }
 }

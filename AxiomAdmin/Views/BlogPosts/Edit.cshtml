@@ -1,0 +1,67 @@
+﻿@model DMS.Models.BlogPost
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Blog /</span> Edit Blog</h4>
+
+    <div class="row">
+
+        <!-- Form controls -->
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-3">
+                            <label asp-for="Heading" class="control-label"></label>
+                            <input asp-for="Heading" class="form-control" />
+                            <span asp-validation-for="Heading" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CoverPhoto" class="control-label"></label>
+                            <input asp-for="CoverPhoto" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Context" class="control-label"></label>
+                            <textarea asp-for="Context" name="Context" id="myEditor"></textarea>
+                            <span asp-validation-for="Context" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="Visible" /> @Html.DisplayNameFor(model => model.Visible)
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        var editor = new FroalaEditor('#myEditor', {
+            // Set custom buttons.
+            toolbarButtons: [['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript'], ['fontFamily', 'fontSize', 'textColor', 'backgroundColor'], ['inlineClass', 'inlineStyle', 'clearFormatting']]
+        });
+    </script>
+
+}

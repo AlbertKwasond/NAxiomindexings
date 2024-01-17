@@ -1,19 +1,22 @@
 ﻿using AxiomAdmin.Data;
 using AxiomAdmin.ViewModel;
-using DMS.Models;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.IO;
-using System.Threading.Tasks;
+using MimeKit;
 
 namespace AxiomAdmin.Controllers
 {
+    [Authorize(Roles = "Administrator,Super-Administration")]
     public class TeamContextsController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly IConfiguration _configuration;
         private readonly ILogger<TeamContextsController> _logger;
+        private readonly string hostLinktoken;
 
         public TeamContextsController(ApplicationDbContext context, IConfiguration configuration, IWebHostEnvironment hostingEnvironment, ILogger<TeamContextsController> logger)
         {
@@ -21,6 +24,7 @@ namespace AxiomAdmin.Controllers
             _configuration = configuration;
             _hostingEnvironment = hostingEnvironment;
             _logger = logger;
+            hostLinktoken = _configuration["HostLink:URLlink"];
         }
 
         // GET: TeamContexts
@@ -41,53 +45,95 @@ namespace AxiomAdmin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(TeamContextViewModel teamContext, IFormFile file)
         {
-            if (file == null || file.Length == 0)
+            //if (file == null || file.Length == 0)
+            //{
+            //    return View(teamContext);
+            //}
+            // Replace these values with your actual SMTP configuration
+            string displayName = "Axiom Indexing";
+            string senderEmail = "infov@axiomindexing.com";
+            string senderPassword = "Axiom@2022Ghana";
+            string host = "webmail.axiomindexing.com";
+            int port = 587;
+            string recipientEmail = "atsukwashie2017@hotmail.com"; // Replace with the recipient's email address
+
+            // Setup the message
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress(displayName, senderEmail));
+            message.To.Add(new MailboxAddress("Recipient Name", recipientEmail));
+            message.Subject = "Hello, MailKit!";
+
+            // Body of the email
+            message.Body = new TextPart("plain")
             {
-                return View(teamContext);
-            }
+                Text = "This is a test email sent using MailKit and SMTP in .NET 7."
+            };
+
+            // Setup the SMTP client
+            using var client = new SmtpClient();
 
             try
             {
-                // Get the root directory of the NAxiomindexings project
-                string rootDirectory = Path.Combine(_hostingEnvironment.ContentRootPath, "../NAxiomindexings");
+                // Connect to the SMTP server with the correct hostname
+                client.Connect("webmail.nakdns.com", port, SecureSocketOptions.StartTls);
 
-                // Define the path to the folder where you want to save the image in the NAxiomindexings project
-                string uploadFolder = Path.Combine(rootDirectory, "wwwroot/assets/img/team");
+                // Authenticate with the server
+                client.Authenticate(senderEmail, senderPassword);
 
-                // Create the folder if it doesn't exist
-                if (!Directory.Exists(uploadFolder))
-                {
-                    Directory.CreateDirectory(uploadFolder);
-                }
+                // Send the email
+                client.Send(message);
 
-                // Generate a unique filename to avoid overwriting existing files
-                string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
-
-                // Combine the upload folder and the unique filename to get the full path
-                string filePath = Path.Combine(uploadFolder, uniqueFileName);
-
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    await file.CopyToAsync(fileStream);
-                }
-
-                // Save the file path in the database
-                teamContext.TeamContexts.ImageUrl = uniqueFileName;
-                teamContext.TeamContexts.Id = Guid.NewGuid();
-                _context.Add(teamContext.TeamContexts);
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction(nameof(Index));
+                // Disconnect from the server
+                client.Disconnect(true);
             }
             catch (Exception ex)
             {
-                // Log the error
-                _logger.LogError(ex, "An error occurred while uploading the file.");
-
-                // Show an error message to the user
-                ModelState.AddModelError(string.Empty, "An error occurred while uploading the file. Please try again.");
-                return View(teamContext);
+                Console.WriteLine($"Error: {ex.Message}");
             }
+            return View();
+
+            //try
+            //{
+            //    // Get the root directory of the NAxiomindexings project
+            //    string rootDirectory = Path.Combine(_hostingEnvironment.ContentRootPath, hostLinktoken);
+
+            //    // Define the path to the folder where you want to save the image in the NAxiomindexings project
+            //    string uploadFolder = Path.Combine(rootDirectory, "wwwroot/assets/img/team");
+
+            //    // Create the folder if it doesn't exist
+            //    if (!Directory.Exists(uploadFolder))
+            //    {
+            //        Directory.CreateDirectory(uploadFolder);
+            //    }
+
+            //    // Generate a unique filename to avoid overwriting existing files
+            //    string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+
+            //    // Combine the upload folder and the unique filename to get the full path
+            //    string filePath = Path.Combine(uploadFolder, uniqueFileName);
+
+            //    using (var fileStream = new FileStream(filePath, FileMode.Create))
+            //    {
+            //        await file.CopyToAsync(fileStream);
+            //    }
+
+            //    // Save the file path in the database
+            //    teamContext.TeamContexts.ImageUrl = uniqueFileName;
+            //    teamContext.TeamContexts.Id = Guid.NewGuid();
+            //    _context.Add(teamContext.TeamContexts);
+            //    await _context.SaveChangesAsync();
+
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Log the error
+            //    _logger.LogError(ex, "An error occurred while uploading the file.");
+
+            //    // Show an error message to the user
+            //    ModelState.AddModelError(string.Empty, "An error occurred while uploading the file. Please try again.");
+            //    return View(teamContext);
+            //}
         }
 
         // GET: TeamContexts/Edit/5

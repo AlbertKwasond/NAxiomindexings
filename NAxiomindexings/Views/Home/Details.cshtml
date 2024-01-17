@@ -55,9 +55,10 @@
 											</ul>
 
 											<span>
-												<i class='bx bx-paper-plane'></i>
-												Apply Before: @Html.DisplayFor(model => model.GetJournals.CreatedOn)
+												<i class='bx bx-calendar'></i>
+												Date: @Html.DisplayFor(model => model.GetJournals.CreatedOn)
 											</span>
+
 										</div>
 									</div>
 								</div>
@@ -126,7 +127,7 @@
 									</h3>
 									<ul>
 
-										<li>Authors Fullname <a href="#">@item.Authors.FullName</a></li>
+										<li>Authors Fullname <a asp-action="FindJournals" asp-route-id="@item.AuthorId">@item.Authors.FullName</a></li>
 										<li>
 											<i> Description: <p> @(item.Description.Length > 150 ? item.Description.Substring(0, 150) + "..." : item.Description)</p> </i>
 										</li>
@@ -147,8 +148,8 @@
 									</a>
 
 									<p>
-										<i class='bx bx-stopwatch'></i>
-										@item.CreatedOn
+										<i class='bx bx-calendar'></i>
+										@item.CreatedOn.ToString("d MMM, yyyy")
 									</p>
 								</div>
 							</div>

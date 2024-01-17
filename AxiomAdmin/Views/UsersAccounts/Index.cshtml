@@ -1,0 +1,113 @@
+﻿@model IEnumerable<AxiomAdmin.Models.UsersAccount>
+@{
+    ViewData["Title"] = "Staff Accont";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Staff Accounts</h4>
+
+    <p>
+        <a type="button" class="btn btn-primary" asp-action="CreateUsersAccounts">
+            Create New Staff 
+        </a>
+    </p>
+    
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        <div class="table-responsive">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FullName)
+                        </th>
+ 
+                        <th>
+                            @Html.DisplayNameFor(model => model.DOB)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Gender)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MobileNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Username)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Roles)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FullName)
+                            </td>
+                           
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DOB)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Gender)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MobileNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Username)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Roles)
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a asp-controller="UsersAccounts" asp-action="EditUsersAccounts" asp-route-id="@item.Id" class="dropdown-item edit-item-btn"><i class="bx bx-edit-alt me-2"></i> Edit</a>
+                                        <a class="dropdown-item" asp-action="DeleteConfirmed" asp-controller="UsersAccounts" asp-route-id="@item.Id"><i class="bx bx-trash me-2"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <!--/ Basic Bootstrap Table -->
+
+
+</div>
+
+@section Scripts {
+
+
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

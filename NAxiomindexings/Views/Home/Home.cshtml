@@ -1,0 +1,339 @@
+﻿@model NAxiomindexings.ViewModel.HomeViewModel
+
+@{
+	ViewData["Title"] = "Home Page";
+}
+
+<!-- Banner Section Start -->
+<div class="banner-style-two">
+	<div class="d-table">
+		<div class="d-table-cell">
+			<div class="container">
+				<div class="banner-text">
+					<span>Find Journals, Publishers & Editors</span>
+					<h1>Home of open access journals & articles</h1>
+					<p>Welcome to Axiom Indexing where you are guaranteed academic quality and enhanced academic integrity in the area of research, journal indexing, and University rankings.</p>
+
+					<div class="theme-btn">
+						<a href="https://author.axiomindexing.com/Identity/Account/Register?returnUrl=%2F" class="default-btn">Apply Now</a>
+						<a asp-controller="Home" asp-action="FindJournals" class="default-btn">Find All Journals</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="banner-img">
+		<img src="assets/img/banner/3.jpg" alt="banner image">
+	</div>
+</div>
+<!-- Banner Section End -->
+<!-- Find Section Start -->
+<div class="find-section pb-100">
+	<div class="container">
+		<form asp-action="Search" class="find-form">
+			<div class="row">
+				<div class="col-md-4">
+					<select id="category" name="category" class="category">
+						<option data-display="Category">Category</option>
+						<option value="Journals">Journals</option>
+						<option value="Author">Author</option>
+						
+					</select>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<input type="text" class="form-control" id="inputSearch" name="inputSearch" placeholder="Journals or Author">
+						<i class="bx bx-search-alt"></i>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<button type="submit" class="find-btn">
+						Find A Journals
+						<i class='bx bx-search'></i>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- Find Section End -->
+<!-- Why Choose Section Start -->
+<section class="why-choose-two pb-70">
+	<div class="container">
+		<div class="section-title text-center">
+			<h2>Why index your journal in Axiom Indexing?</h2>
+			<p>Axiom Indexing offers journals visibility, accessibility, and inclusivity, especially for niche fields. With comprehensive coverage and open access principles, it provides an appealing platform for extending global reach and promoting research.</p>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-4 col-sm-6">
+				<div class="choose-card">
+					<i class="flaticon-resume"></i>
+					<h3> Journals</h3>
+					<p>Journals are publications, typically periodicals, that are produced to disseminate information, research findings, scholarly articles, reviews, or other content within a specific academic or professional field. They serve as important vehicles for sharing knowledge, research outcomes, and expert opinions.</p>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-sm-6">
+				<div class="choose-card">
+					<i class="flaticon-recruitment"></i>
+					<h3>Publishers</h3>
+					<p>
+						Publishers are entities responsible for content production and distribution, including books, journals, and digital media. They manage editing, design, marketing, and distribution, collaborating with various professionals to create and disseminate high-quality content across genres and formats.
+					</p>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-sm-6 offset-sm-3 offset-lg-0">
+				<div class="choose-card">
+					<i class="flaticon-employee"></i>
+					<h3>Editors</h3>
+					<p>Editors are professionals responsible for content oversight, ensuring quality, accuracy, and coherence. They collaborate with contributors, guide authors through revisions, and oversee copyediting and design, ensuring the final product meets publication standards and maintains content integrity.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Why Choose Section End -->
+<!-- Category Section Start -->
+<section class="categories-section pb-70">
+	<div class="container">
+		<div class="section-title text-center">
+			<h2>Choose Your Category</h2>
+			<p>When it comes to academic and professional publishing, the selection of a journal's category is a pivotal decision that influences its reach, impact, and relevance to the intended audience. The category of a journal serves as a reflection of its thematic focus, determining the subject matter and type of content it will encompass. </p>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-3 col-md-4 col-sm-6">
+				<a href="#">
+					<div class="category-card">
+						<i class='flaticon-accounting'></i>
+						<h3>Economics Journals</h3>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-lg-3 col-md-4 col-sm-6">
+				<a href="#">
+					<div class="category-card">
+						<i class='flaticon-graduation-cap'></i>
+						<h3>Education Journals</h3>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-lg-3 col-md-4 col-sm-6">
+				<a href="#">
+					<div class="category-card">
+						<i class='flaticon-wrench-and-screwdriver-in-cross'></i>
+						<h3>Automotive Journals</h3>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-lg-3 col-md-4 col-sm-6">
+				<a href="#">
+					<div class="category-card">
+						<i class='flaticon-consultation'></i>
+						<h3>Business Journals</h3>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-lg-3 col-md-4 col-sm-6">
+				<a href="#">
+					<div class="category-card">
+						<i class='flaticon-heart'></i>
+						<h3>Medical Journals</h3>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-lg-3  col-md-4 col-sm-6">
+				<a href="#">
+					<div class="category-card">
+						<i class='flaticon-computer'></i>
+						<h3>IT & Agency</h3>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-lg-3  col-md-4 col-sm-6 offset-md-2 offset-lg-0">
+				<a href="#">
+					<div class="category-card">
+						<i class='flaticon-worker'></i>
+						<h3>Engineering</h3>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-lg-3 col-md-4 col-sm-6">
+				<a href="#">
+					<div class="category-card">
+						<i class='flaticon-auction'></i>
+						<h3>Law and Legal Studies</h3>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Category Section End -->
+<!-- Job Info Section Start -->
+<div class="job-info-two pt-100 pb-70">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="looking-job">
+					<div class="media">
+						<i class='flaticon-group align-self-start mr-3'></i>
+						<div class="media-body">
+							<h5 class="mt-0">
+								Searching for Journals
+							</h5>
+							<p>Your next discovery could be within the pages of these reputable journals.</p>
+
+							<a asp-controller="Home" asp-action="FindJournals">
+								Search Now
+								<i class='bx bx-chevrons-right'></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="recruiting-card">
+					<div class="media">
+						<i class='flaticon-resume align-self-start mr-3'></i>
+						<div class="media-body">
+							<h5 class="mt-0">
+								Ready to contribute your insights?
+							</h5>
+							<p>Your next publication could be featured in one of these esteemed journals.</p>
+
+							<a href="https://author.axiomindexing.com/Identity/Account/Register?returnUrl=%2F" target="_blank">
+								Apply Now
+								<i class='bx bx-chevrons-right'></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Job Info Section End -->
+<!-- Candidate Section Start -->
+<section class="candidate-section ptb-100">
+	<div class="container">
+		<div class="section-title text-center">
+			<h2>Axiom Indexing Community</h2>
+		</div>
+		<p>
+			Axiom Indexing Community serves as an integral part of the academic publishing landscape, bringing together
+			journal editors, researchers, authors, and readers. This community provides a platform for collaborative interaction, sharing of insights, and collective support for those associated with journals indexed by Axiom. It fosters an environment for scholarly discussions, networking opportunities, and a sense of belonging for individuals who share an interest in the indexed content.
+		</p>
+
+	</div>
+</section>
+<!-- Candidate Section End -->
+<!-- Testimonial Section Start -->
+<div class="testimonial-style-two  pb-70">
+	<div class="container">
+		<div class="section-title text-center">
+			<h2>What Client’s Say About Us</h2>
+		</div>
+
+		<div class="row">
+			<div class="testimonial-slider-two owl-carousel owl-theme">
+				@foreach (var item in Model.ListHomeContexts)
+				{
+					<div class="testimonial-items">
+						<div class="testimonial-text">
+							<i class='flaticon-left-quotes-sign'></i>
+							<p>
+								@Html.DisplayFor(model => item.Messages)
+
+							</p>
+						</div>
+
+						<div class="testimonial-info-text">
+							<h3>
+								@Html.DisplayFor(model => item.Name)
+
+							</h3>
+							<p>
+								@Html.DisplayFor(model => item.Title)
+							</p>
+						</div>
+					</div>
+				}
+
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Testimonial Section End -->
+<!-- Blog Section Start -->
+<section class="blog-section pb-70">
+	<div class="container">
+		<div class="section-title text-center">
+			<h2>News, Tips & Articles</h2>
+		</div>
+
+		<div class="row">
+			@foreach (var item in Model.ListBlogPosts)
+			{
+				<div class="col-lg-4 col-sm-6">
+					<div class="blog-card">
+						<div class="blog-img">
+							<a asp-controller="Blog" asp-action="Details" asp-route-id="@item.Id">
+								<img src="@Url.Content("~/assets/img/blog/"+item.FeaturedImageUrl)" alt="blog image" height="50%">
+							</a>
+						</div>
+						<div class="blog-text">
+							<ul>
+								<li>
+									<i class='bx bxs-user'></i>
+									@Html.DisplayFor(model => item.Author)
+								</li>
+								<li>
+									<i class='bx bx-calendar'></i>
+									@Html.DisplayFor(model => item.PublishedDate)
+								</li>
+							</ul>
+
+							<h3>
+								<a asp-controller="Blog" asp-action="Details" asp-route-id="@item.Id">
+									@Html.DisplayFor(model => item.Heading)
+								</a>
+							</h3>
+							<p>
+								@{
+									var plainText = System.Text.RegularExpressions.Regex.Replace(item.Context, "<.*?>", ""); // Remove HTML tags
+									var truncatedText = plainText.Length > 100 ? plainText.Substring(0, 100) + "..." : plainText;
+									@Html.Raw(truncatedText)
+								}
+							</p>
+
+							<a asp-controller="Blog" asp-action="Details" asp-route-id="@item.Id" class="blog-btn">
+								Read More
+								<i class='bx bx-plus bx-spin'></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</section>
+<!-- Blog Section End -->
+
+								
+@section Scripts {
+	
+	<script src="~/assets/js/autocomplete.js"></script>
+}
