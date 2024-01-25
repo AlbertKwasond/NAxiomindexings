@@ -188,7 +188,7 @@ namespace AxiomAdmin.Controllers
         }
 
         // POST: Volunteers/Delete/5
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (_context.Volunteers == null)
             {

@@ -139,7 +139,7 @@ namespace AxiomAdmin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,FullName,ImageUrl,Position,Date")] BoardOfDirectorsContext boardOfDirectorsContext)
+        public async Task<IActionResult> Edit(Guid id, BoardOfDirectorsContext boardOfDirectorsContext, IFormFile file)
         {
             if (id != boardOfDirectorsContext.Id)
             {
@@ -150,6 +150,36 @@ namespace AxiomAdmin.Controllers
             {
                 try
                 {
+                    // Retrieve the existing record from the database
+                    var existingDirectors = await _context.BoardOfDirectorsContexts.FindAsync(boardOfDirectorsContext.Id);
+                    if (existingDirectors == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Delete the old image file from the server's file system (if it exists)
+                    if (!string.IsNullOrEmpty(existingDirectors.ImageUrl))
+                    {
+                        var oldFilePath = Path.Combine(_hostingEnvironment.ContentRootPath, existingDirectors.ImageUrl);
+                        if (System.IO.File.Exists(oldFilePath))
+                        {
+                            System.IO.File.Delete(oldFilePath);
+                        }
+                    }
+
+                    // Save the new image file to the server's file system
+                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                    string uploadFolder = Path.Combine(_hostingEnvironment.ContentRootPath, "wwwroot/assets/img/team");
+                    string newFilePath = Path.Combine(uploadFolder, uniqueFileName);
+
+                    using (var fileStream = new FileStream(newFilePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
+
+                    // Update the record in the database
+                    existingDirectors.ImageUrl = newFilePath;
+                    // ...
                     _context.Update(boardOfDirectorsContext);
                     await _context.SaveChangesAsync();
                 }
@@ -169,34 +199,24 @@ namespace AxiomAdmin.Controllers
             return View(boardOfDirectorsContext);
         }
 
-        // GET: BoardOfDirectorsContexts/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
-        {
-            if (id == null || _context.BoardOfDirectorsContexts == null)
-            {
-                return NotFound();
-            }
-
-            var boardOfDirectorsContext = await _context.BoardOfDirectorsContexts
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (boardOfDirectorsContext == null)
-            {
-                return NotFound();
-            }
-
-            return View(boardOfDirectorsContext);
-        }
-
         // POST: BoardOfDirectorsContexts/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (_context.BoardOfDirectorsContexts == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.BoardOfDirectorsContexts'  is null.");
             }
             var boardOfDirectorsContext = await _context.BoardOfDirectorsContexts.FindAsync(id);
+            // Delete the old image file from the server's file system (if it exists)
+            if (!string.IsNullOrEmpty(boardOfDirectorsContext.ImageUrl))
+            {
+                var oldFilePath = Path.Combine(_hostingEnvironment.ContentRootPath, boardOfDirectorsContext.ImageUrl);
+                if (System.IO.File.Exists(oldFilePath))
+                {
+                    System.IO.File.Delete(oldFilePath);
+                }
+            }
+
             if (boardOfDirectorsContext != null)
             {
                 _context.BoardOfDirectorsContexts.Remove(boardOfDirectorsContext);

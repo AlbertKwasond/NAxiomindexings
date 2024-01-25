@@ -3,7 +3,7 @@
 {
     <div class="col">
         <div class="card h-100">
-            <img class="card-img-top" src="@Url.Content("https://localhost:7043/assets/img/team/"+item.ImageUrl)" alt="Card image cap" height="466" />
+            <img class="card-img-top" src="@Url.Content("https://img.axiomindexing.com/assets/img/team/"+item.ImageUrl)" alt="Card image cap" height="466" />
             <div class="card-body">
                 <h5 class="card-title">
                     @Html.DisplayFor(model => item.Name)
@@ -12,7 +12,7 @@
                     @Html.DisplayFor(model => item.Position)
                 </p>
                 <a href="#" data-id="@item.Id" class="card-link edit-item-btn">Edit</a>
-                <a asp-action="Delete" asp-controller="YourControllerName" asp-route-id="@item.Id" class="card-link">Delete</a>
+                <a asp-action="Delete" asp-controller="TeamContexts" asp-route-id="@item.Id" class="card-link">Delete</a>
             </div>
         </div>
     </div>

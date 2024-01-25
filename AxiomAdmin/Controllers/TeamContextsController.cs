@@ -45,95 +45,53 @@ namespace AxiomAdmin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(TeamContextViewModel teamContext, IFormFile file)
         {
-            //if (file == null || file.Length == 0)
-            //{
-            //    return View(teamContext);
-            //}
-            // Replace these values with your actual SMTP configuration
-            string displayName = "Axiom Indexing";
-            string senderEmail = "infov@axiomindexing.com";
-            string senderPassword = "Axiom@2022Ghana";
-            string host = "webmail.axiomindexing.com";
-            int port = 587;
-            string recipientEmail = "atsukwashie2017@hotmail.com"; // Replace with the recipient's email address
-
-            // Setup the message
-            var message = new MimeMessage();
-            message.From.Add(new MailboxAddress(displayName, senderEmail));
-            message.To.Add(new MailboxAddress("Recipient Name", recipientEmail));
-            message.Subject = "Hello, MailKit!";
-
-            // Body of the email
-            message.Body = new TextPart("plain")
+            if (file == null || file.Length == 0)
             {
-                Text = "This is a test email sent using MailKit and SMTP in .NET 7."
-            };
-
-            // Setup the SMTP client
-            using var client = new SmtpClient();
+                return View(teamContext);
+            }
 
             try
             {
-                // Connect to the SMTP server with the correct hostname
-                client.Connect("webmail.nakdns.com", port, SecureSocketOptions.StartTls);
+                // Get the root directory of the NAxiomindexings project
+                string rootDirectory = Path.Combine(_hostingEnvironment.ContentRootPath, hostLinktoken);
 
-                // Authenticate with the server
-                client.Authenticate(senderEmail, senderPassword);
+                // Define the path to the folder where you want to save the image in the NAxiomindexings project
+                string uploadFolder = Path.Combine(rootDirectory, "wwwroot/assets/img/team");
 
-                // Send the email
-                client.Send(message);
+                // Create the folder if it doesn't exist
+                if (!Directory.Exists(uploadFolder))
+                {
+                    Directory.CreateDirectory(uploadFolder);
+                }
 
-                // Disconnect from the server
-                client.Disconnect(true);
+                // Generate a unique filename to avoid overwriting existing files
+                string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+
+                // Combine the upload folder and the unique filename to get the full path
+                string filePath = Path.Combine(uploadFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(fileStream);
+                }
+
+                // Save the file path in the database
+                teamContext.TeamContexts.ImageUrl = uniqueFileName;
+                teamContext.TeamContexts.Id = Guid.NewGuid();
+                _context.Add(teamContext.TeamContexts);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                // Log the error
+                _logger.LogError(ex, "An error occurred while uploading the file.");
+
+                // Show an error message to the user
+                ModelState.AddModelError(string.Empty, "An error occurred while uploading the file. Please try again.");
+                return View(teamContext);
             }
-            return View();
-
-            //try
-            //{
-            //    // Get the root directory of the NAxiomindexings project
-            //    string rootDirectory = Path.Combine(_hostingEnvironment.ContentRootPath, hostLinktoken);
-
-            //    // Define the path to the folder where you want to save the image in the NAxiomindexings project
-            //    string uploadFolder = Path.Combine(rootDirectory, "wwwroot/assets/img/team");
-
-            //    // Create the folder if it doesn't exist
-            //    if (!Directory.Exists(uploadFolder))
-            //    {
-            //        Directory.CreateDirectory(uploadFolder);
-            //    }
-
-            //    // Generate a unique filename to avoid overwriting existing files
-            //    string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
-
-            //    // Combine the upload folder and the unique filename to get the full path
-            //    string filePath = Path.Combine(uploadFolder, uniqueFileName);
-
-            //    using (var fileStream = new FileStream(filePath, FileMode.Create))
-            //    {
-            //        await file.CopyToAsync(fileStream);
-            //    }
-
-            //    // Save the file path in the database
-            //    teamContext.TeamContexts.ImageUrl = uniqueFileName;
-            //    teamContext.TeamContexts.Id = Guid.NewGuid();
-            //    _context.Add(teamContext.TeamContexts);
-            //    await _context.SaveChangesAsync();
-
-            //    return RedirectToAction(nameof(Index));
-            //}
-            //catch (Exception ex)
-            //{
-            //    // Log the error
-            //    _logger.LogError(ex, "An error occurred while uploading the file.");
-
-            //    // Show an error message to the user
-            //    ModelState.AddModelError(string.Empty, "An error occurred while uploading the file. Please try again.");
-            //    return View(teamContext);
-            //}
         }
 
         // GET: TeamContexts/Edit/5
@@ -222,15 +180,23 @@ namespace AxiomAdmin.Controllers
         }
 
         // POST: TeamContexts/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (_context.TeamContexts == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.TeamContexts'  is null.");
             }
             var teamContext = await _context.TeamContexts.FindAsync(id);
+
+            // Delete the old image file from the server's file system (if it exists)
+            if (!string.IsNullOrEmpty(teamContext.ImageUrl))
+            {
+                var oldFilePath = Path.Combine(_hostingEnvironment.ContentRootPath, teamContext.ImageUrl);
+                if (System.IO.File.Exists(oldFilePath))
+                {
+                    System.IO.File.Delete(oldFilePath);
+                }
+            }
             if (teamContext != null)
             {
                 _context.TeamContexts.Remove(teamContext);

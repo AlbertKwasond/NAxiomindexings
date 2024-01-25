@@ -289,12 +289,12 @@ h3 {
 /* Navbar CSS End */
 /* Banner CSS Start */
 .banner-section {
-  height: 800px;
-  background-image: url(../img/banner/1.jpg);
-  background-position: center center;
-  background-size: cover;
-  position: relative;
-  z-index: 0;
+    height: 800px;
+    background-image: url(https://img.axiomindexing.com/assets/img/banner/1.jpg);
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+    z-index: 0;
 }
 
 .banner-section::before {
@@ -308,18 +308,18 @@ h3 {
   z-index: -1;
 }
 
-.banner-section::after {
-  position: absolute;
-  content: '';
-  background-image: url(../img/banner/white-shape.png);
-  background-position: center center;
-  background-size: cover;
-  width: 100%;
-  height: 350px;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-}
+    .banner-section::after {
+        position: absolute;
+        content: '';
+        background-image: url(https://img.axiomindexing.com/assets/img/banner/white-shape.png);
+        background-position: center center;
+        background-size: cover;
+        width: 100%;
+        height: 350px;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+    }
 
 .banner-section .banner-content p {
   color: #ffffff;
@@ -626,12 +626,12 @@ h3 {
 /* Job Section CSS End */
 /* Way To Use CSS Start */
 .use-section {
-  background-image: url(../img/section-bg/1.jpg);
-  background-position: center center;
-  background-size: cover;
-  position: relative;
-  z-index: 0;
-  background-attachment: fixed;
+    background-image: url(https://img.axiomindexing.com/assets/img/section-bg/1.jpg);
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+    z-index: 0;
+    background-attachment: fixed;
 }
 
 .use-section::before {
@@ -753,17 +753,17 @@ h3 {
   position: relative;
 }
 
-.why-choose::before {
-  position: absolute;
-  content: '';
-  background-image: url(../img/shape/why-choose.png);
-  background-size: cover;
-  background-position: center center;
-  top: 0;
-  left: 0;
-  width: 330px;
-  height: 400px;
-}
+    .why-choose::before {
+        position: absolute;
+        content: '';
+        background-image: url(https://img.axiomindexing.com/assets/img/shape/why-choose.png);
+        background-size: cover;
+        background-position: center center;
+        top: 0;
+        left: 0;
+        width: 330px;
+        height: 400px;
+    }
 
 .why-choose-text {
   padding-left: 25px;
@@ -839,10 +839,10 @@ h3 {
 }
 
 .why-choose-img {
-  background-image: url(../img/why.choose.jpg);
-  background-position: center center;
-  background-size: cover;
-  height: 100%;
+    background-image: url(https://img.axiomindexing.com/assets/img/why.choose.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 100%;
 }
 
 /* Why Choose CSS End */
@@ -990,17 +990,17 @@ h3 {
   position: relative;
 }
 
-.price-card::before {
-  position: absolute;
-  content: '';
-  background-image: url(../img/shape/price.png);
-  background-position: center center;
-  background-size: cover;
-  width: 145px;
-  height: 100px;
-  bottom: 0;
-  left: 0;
-}
+    .price-card::before {
+        position: absolute;
+        content: '';
+        background-image: url(https://img.axiomindexing.com/assets/img/shape/price.png);
+        background-position: center center;
+        background-size: cover;
+        width: 145px;
+        height: 100px;
+        bottom: 0;
+        left: 0;
+    }
 
 .price-card .price-top {
   margin-bottom: 20px;
@@ -1216,12 +1216,12 @@ h3 {
 /* Candidate CSS End */
 /* Testimonial CSS Start */
 .testimonial-section {
-  background-image: url(../img/section-bg/2.jpg);
-  background-position: center center;
-  background-size: cover;
-  height: 100%;
-  position: relative;
-  z-index: 0;
+    background-image: url(https://img.axiomindexing.com/assets/img/section-bg/2.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 100%;
+    position: relative;
+    z-index: 0;
 }
 
 .testimonial-section::before {
@@ -1398,20 +1398,20 @@ h3 {
   position: relative;
 }
 
-.footer-area::before {
-  position: absolute;
-  content: '';
-  background-image: url(../img/shape/footer.png);
-  background-position: center center;
-  background-size: cover;
-  width: 140px;
-  height: 138px;
-  right: 60px;
-  top: 70px;
-  opacity: .2;
-  -webkit-animation: rotate 30s infinite linear;
-          animation: rotate 30s infinite linear;
-}
+    .footer-area::before {
+        position: absolute;
+        content: '';
+        background-image: url(https://img.axiomindexing.com/assets/img/shape/footer.png);
+        background-position: center center;
+        background-size: cover;
+        width: 140px;
+        height: 138px;
+        right: 60px;
+        top: 70px;
+        opacity: .2;
+        -webkit-animation: rotate 30s infinite linear;
+        animation: rotate 30s infinite linear;
+    }
 
 .footer-area .footer-widget {
   margin-bottom: 30px;
@@ -1548,12 +1548,12 @@ h3 {
 /*---------- Home Page Two CSS Start ----------*/
 /* Banner CSS Start */
 .banner-style-two {
-  background-image: url(../img/banner/2.jpg);
-  background-position: center center;
-  background-size: cover;
-  height: 800px;
-  position: relative;
-  z-index: 0;
+    background-image: url(https://img.axiomindexing.com/assets/img/banner/2.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 800px;
+    position: relative;
+    z-index: 0;
 }
 
 .banner-style-two::before {
@@ -1778,19 +1778,19 @@ h3 {
   z-index: 1;
 }
 
-.job-style-two::before {
-  position: absolute;
-  content: '';
-  background-image: url(../img/shape/job.png);
-  background-position: center center;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  opacity: .02;
-  z-index: -1;
-}
+    .job-style-two::before {
+        position: absolute;
+        content: '';
+        background-image: url(https://img.axiomindexing.com/assets/img/shape/job.png);
+        background-position: center center;
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        opacity: .02;
+        z-index: -1;
+    }
 
 .job-card-two {
   background: #ffffff;
@@ -1864,11 +1864,11 @@ h3 {
 /* Job  Section CSS End */
 /* Job  Info CSS Start */
 .job-info-two {
-  background-image: url(../img/section-bg/1.jpg);
-  background-size: cover;
-  background-position: center center;
-  position: relative;
-  z-index: 0;
+    background-image: url(https://img.axiomindexing.com/assets/img/section-bg/1.jpg);
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    z-index: 0;
 }
 
 .job-info-two::before {
@@ -1972,10 +1972,10 @@ h3 {
 /*---------- Home Page Three CSS Start ----------*/
 /* Banner CSS Start */
 .banner-style-three {
-  background-image: url(../img/banner/4.jpg);
-  background-size: cover;
-  background-position: center center;
-  height: 800px;
+    background-image: url(https://img.axiomindexing.com/assets/img/banner/4.jpg);
+    background-size: cover;
+    background-position: center center;
+    height: 800px;
 }
 
 .banner-style-three .banner-text {
@@ -2098,11 +2098,11 @@ h3 {
 /* Grow Business CSS End */
 /* Process CSS Start */
 .video-section {
-  background-image: url(../img/section-bg/3.jpg);
-  background-size: cover;
-  background-position: center center;
-  position: relative;
-  z-index: 0;
+    background-image: url(https://img.axiomindexing.com/assets/img/section-bg/3.jpg);
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    z-index: 0;
 }
 
 .video-section::before {
@@ -2177,17 +2177,17 @@ h3 {
   background: #fef8f6;
 }
 
-.browse-job::before {
-  position: absolute;
-  content: '';
-  background-image: url(../img/shape/app.png);
-  background-position: center center;
-  background-size: cover;
-  width: 450px;
-  height: 400px;
-  top: 100px;
-  right: 0;
-}
+    .browse-job::before {
+        position: absolute;
+        content: '';
+        background-image: url(https://img.axiomindexing.com/assets/img/shape/app.png);
+        background-position: center center;
+        background-size: cover;
+        width: 450px;
+        height: 400px;
+        top: 100px;
+        right: 0;
+    }
 
 .browse-job .browse-jobs-text .section-title {
   margin-bottom: 25px;
@@ -2330,17 +2330,17 @@ h3 {
   position: relative;
 }
 
-.banner-style-four::before {
-  position: absolute;
-  content: '';
-  background-image: url(../img/shape/banner.png);
-  background-position: center center;
-  background-size: cover;
-  height: 100%;
-  width: 55%;
-  top: 0;
-  left: 0;
-}
+    .banner-style-four::before {
+        position: absolute;
+        content: '';
+        background-image: url(https://img.axiomindexing.com/assets/img/shape/banner.png);
+        background-position: center center;
+        background-size: cover;
+        height: 100%;
+        width: 55%;
+        top: 0;
+        left: 0;
+    }
 
 .banner-style-four .banner-text {
   z-index: 1;
@@ -2411,18 +2411,18 @@ h3 {
   position: relative;
 }
 
-.testimonial-style-three::before {
-  position: absolute;
-  content: '';
-  background-image: url(../img/banner/2.jpg);
-  background-position: center center;
-  background-size: cover;
-  height: 400px;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
+    .testimonial-style-three::before {
+        position: absolute;
+        content: '';
+        background-image: url(https://img.axiomindexing.com/assets/img/banner/2.jpg);
+        background-position: center center;
+        background-size: cover;
+        height: 400px;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
 
 .testimonial-style-three::after {
   position: absolute;
@@ -2451,7 +2451,7 @@ h3 {
 /*---------- Home Page Five CSS End ----------*/
 /* Banner CSS Start */
 .banner-style-five {
-  background-image: url(../img/banner/5.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/banner/5.jpg);
 }
 
 .banner-style-five::after {
@@ -2639,9 +2639,9 @@ h3 {
   color: #fd1616;
 }
 
-.page-title.title-bg1 {
-  background-image: url(../img/title-bg/1.jpg);
-}
+    .page-title.title-bg1 {
+        background-image: url(https://img.axiomindexing.com/assets/img/title-bg/1.jpg);
+    }
 
 .page-title .lines {
   position: absolute;
@@ -2718,13 +2718,13 @@ h3 {
 /*---------- About Page CSS End ----------*/
 /*---------- Find Jobs Page CSS Start ----------*/
 .page-title.title-bg2 {
-  background-image: url(../img/title-bg/2.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/2.jpg);
 }
 
 /*---------- Find Jobs Page CSS End ----------*/
 /*---------- Post Jobs Page CSS Start ----------*/
 .page-title.title-bg3 {
-  background-image: url(../img/title-bg/3.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/3.jpg);
 }
 
 .job-post-from {
@@ -2798,7 +2798,7 @@ h3 {
 /*---------- Post Jobs Page CSS End ----------*/
 /*---------- Job List Page CSS Start ----------*/
 .page-title.title-bg4 {
-  background-image: url(../img/title-bg/4.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/4.jpg);
 }
 
 .job-list-section .pagination {
@@ -2846,7 +2846,7 @@ h3 {
 /*---------- Job List Page CSS End ----------*/
 /*---------- Job Grid Page CSS Start ----------*/
 .page-title.title-bg5 {
-  background-image: url(../img/title-bg/5.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/5.jpg);
 }
 
 .jobs-grid-section .pagination {
@@ -2894,7 +2894,7 @@ h3 {
 /*---------- Job Grid Page CSS End ----------*/
 /*---------- Job Details Page CSS Start ----------*/
 .page-title.title-bg6 {
-  background-image: url(../img/title-bg/6.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/6.jpg);
 }
 
 .job-details-text .job-card {
@@ -3111,7 +3111,7 @@ h3 {
 /*---------- Job Details Page CSS End ----------*/
 /*---------- Candidates Page CSS Start ----------*/
 .page-title.title-bg7 {
-  background-image: url(../img/title-bg/7.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/7.jpg);
 }
 
 .candidate-card {
@@ -3180,7 +3180,7 @@ h3 {
 /*---------- Candidates Page CSS End ----------*/
 /*---------- Candidates Details CSS Start ----------*/
 .page-title.title-bg8 {
-  background-image: url(../img/title-bg/8.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/8.jpg);
 }
 
 .candidate-profile {
@@ -3312,7 +3312,7 @@ h3 {
 /*---------- Candidates Details CSS End ----------*/
 /*---------- Company CSS Start ----------*/
 .page-title.title-bg9 {
-  background-image: url(../img/title-bg/9.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/9.jpg);
 }
 
 .company-style-two .pagination {
@@ -3360,7 +3360,7 @@ h3 {
 /*---------- Company CSS End ----------*/
 /*---------- Pricing CSS Start ----------*/
 .page-title.title-bg10 {
-  background-image: url(../img/title-bg/10.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/10.jpg);
 }
 
 /*---------- Pricing CSS End ----------*/
@@ -3479,7 +3479,7 @@ h3 {
 /*---------- Account CSS End ----------*/
 /*---------- Resume CSS Start ----------*/
 .page-title.title-bg11 {
-  background-image: url(../img/title-bg/11.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/11.jpg);
 }
 
 .resume-area {
@@ -3669,7 +3669,7 @@ h3 {
 /*---------- Resume CSS End ----------*/
 /*---------- Sign In CSS Start ----------*/
 .page-title.title-bg12 {
-  background-image: url(../img/title-bg/12.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/12.jpg);
 }
 
 .signin-form {
@@ -3779,7 +3779,7 @@ h3 {
 /*---------- Sign In CSS End ----------*/
 /*---------- Sign Up CSS Start ----------*/
 .page-title.title-bg13 {
-  background-image: url(../img/title-bg/13.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/13.jpg);
 }
 
 .signup-form {
@@ -3889,7 +3889,7 @@ h3 {
 /*---------- Sign Up  CSS End ----------*/
 /*---------- Reset Password CSS Start ----------*/
 .page-title.title-bg14 {
-  background-image: url(../img/title-bg/14.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/14.jpg);
 }
 
 .reset-form {
@@ -3933,19 +3933,19 @@ h3 {
 /*---------- Reset Password CSS End ----------*/
 /*---------- 404 CSS Start ----------*/
 .page-title.title-bg15 {
-  background-image: url(../img/title-bg/15.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/15.jpg);
 }
 
 /*---------- 404 CSS End ----------*/
 /*---------- Testimonial CSS Start ----------*/
 .page-title.title-bg16 {
-  background-image: url(../img/title-bg/16.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/16.jpg);
 }
 
 /*---------- Testimonial CSS End ----------*/
 /*---------- FAQ Page CSS Start ----------*/
 .page-title.title-bg17 {
-  background-image: url(../img/title-bg/17.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/17.jpg);
 }
 
 .faq-section .accordions .accordion-item {
@@ -4020,7 +4020,7 @@ h3 {
 /*---------- FAQ Page CSS End ----------*/
 /*---------- Categories Page CSS Start ----------*/
 .page-title.title-bg18 {
-  background-image: url(../img/title-bg/18.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/18.jpg);
 }
 
 .category-style-two .pagination {
@@ -4068,7 +4068,7 @@ h3 {
 /*---------- Categories Page CSS End ----------*/
 /*----------  Privacy Page CSS Start ----------*/
 .page-title.title-bg20 {
-  background-image: url(../img/title-bg/20.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/20.jpg);
 }
 
 .privacy-section .privacy-text h2 {
@@ -4088,7 +4088,7 @@ h3 {
 /*----------  Privacy Page CSS End ----------*/
 /*----------  Terms Page CSS Start ----------*/
 .page-title.title-bg19 {
-  background-image: url(../img/title-bg/19.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/19.jpg);
 }
 
 .terms-section .terms-text h2 {
@@ -4114,7 +4114,7 @@ h3 {
 /*----------  Terms Page CSS End ----------*/
 /*----------  Blog Page CSS Start ----------*/
 .page-title.title-bg21 {
-  background-image: url(../img/title-bg/21.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/21.jpg);
 }
 
 .blog-style-two .pagination {
@@ -4162,13 +4162,13 @@ h3 {
 /*----------  Blog Page CSS End ----------*/
 /*----------  Blog Page Two CSS Start ----------*/
 .page-title.title-bg24 {
-  background-image: url(../img/title-bg/24.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/24.jpg);
 }
 
 /*----------  Blog Page Two CSS End ----------*/
 /*----------  Blog Details Page CSS Strat ----------*/
 .page-title.title-bg22 {
-  background-image: url(../img/title-bg/22.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/22.jpg);
 }
 
 .blog-widget {
@@ -4445,7 +4445,7 @@ h3 {
 /*----------  Blog Details Page CSS End ----------*/
 /*----------  Contact Page CSS Start ----------*/
 .page-title.title-bg23 {
-  background-image: url(../img/title-bg/23.jpg);
+    background-image: url(https://img.axiomindexing.com/assets/img/title-bg/23.jpg);
 }
 
 .contact-card {
